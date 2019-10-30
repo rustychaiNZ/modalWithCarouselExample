@@ -1,0 +1,83 @@
+body{
+	background-color: #666666;
+}
+.bg-custom{
+	background: #abc;
+}
+.margin-auto{
+	margin: auto;
+	float: 0;
+}
+.jumbotron{
+	border-radius: 0;
+	margin: 0;
+}
+.container{
+	min-height: 45vh;
+	padding: 15px 5px;
+}
+.container p,h2,h3,h4,h5,h6{
+	color: #333;
+}
+.img-body{
+	width: auto;
+	height: 200px;
+	margin: auto;
+	display: block;
+}
+.img-body:hover{
+	height: 195px;
+	width: auto;
+	box-shadow: 2px 2px 15px grey;
+}
+h4{
+	padding: 15px 0;
+}
+.row{
+	margin: auto;
+}
+.form-output{
+	margin: 10px 0;
+}
+.bg-dark{
+	color: white;
+}
+.bg-secondary h3{
+	color: white;
+}
+.bg-secondary p{
+	color: white;
+}
+.my-dogs{
+	cursor: pointer;
+}
+
+/* Modal styling */
+.my-modal{
+	z-index: 99;
+	background: #333;
+	/*max-width: 60%;*/
+	/*max-height: 80vh;*/
+	display: none;
+	position: fixed;
+	top: 10px;
+	left: 20%;
+	right: 20%;
+	max-height: 80vh;
+	box-shadow: 10px 10px 25px #333;
+}
+.close-bar{
+	font-size: 50px;
+	text-align: right;
+	padding: 0 20px;
+	cursor: pointer;
+	background-color: #2e3d54;
+	color: #edf1f7;
+}
+.img-modal{
+	min-width: 20%;
+	max-width: 60%;
+	max-height: 50vh;
+	margin: auto;
+	display: block;
+}
