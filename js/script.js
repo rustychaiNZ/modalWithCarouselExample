@@ -95,11 +95,14 @@ function fieldReset() {
 function allDogs() {
 	// Displays the dogs name on the left in a 'jumbotron'
 	document.getElementById('dogsContainer').innerHTML += '<h3 class="jumbotron col-md-4 bg-dark text-center">' + dogs[i].name + '</h3>';
-	// Displays an image of the dog itself
+	/* 
+		* Displays an image of the dog itself
+		* 'id.toString()' takes the variable created on line 76 and finds the corrosponding object in the array with the same listed id 
+	*/
 	document.getElementById('dogsContainer').innerHTML += '<div class="col-md-4"><img id="d' + id.toString() + '" class="img-thumbnail img-body  my-dogs" src="' + dogs[i].photo1 + '"alt="Dog"> </div>'; // ID is incremented automatically
 	// Displays the remaining information about the dog taken from the array function
 	document.getElementById('dogsContainer').innerHTML += '<ul class="jumbotron col-md-4 bg-custom">' +
-	'<li><b>ID#:</b> D' + id++ + '</li>' + 
+	'<li><b>ID#:</b> d' + id++ + '</li>' + 
 	'<li><b>Breed:</b> ' + dogs[i].breed + '</li>' + 
 	'<li><b>Colour:</b> ' + dogs[i].color + '</li>' + 
 	'<li><b>Height (cm):</b> ' + dogs[i].height + '</li>' +
@@ -137,14 +140,41 @@ function dogInModal() {
 	'</div>' +
 	// Bootstrap carousel finishes here
 
+	// Lists dogs details
 	'<ul class="jumbotron bg-custom">' +
-	'<li><b>ID#:</b> D' + id++ + '</li>' + 
-	'<li><b>Breed:</b> ' + dogs[i].breed + '</li>' + 
-	'<li><b>Colour:</b> ' + dogs[i].color + '</li>' + 
-	'<li><b>Height (cm):</b> ' + dogs[i].height + '</li>' +
-	'<li><b>Age(Years): </b>' + dogs[i].age + '</li>' + 
-	'<li><b>Job: </b>' + dogs[i].job + '</li>' +
+		'<li><b>ID#:</b> d' + id++ + '</li>' + 
+		'<li><b>Breed:</b> ' + dogs[i].breed + '</li>' + 
+		'<li><b>Colour:</b> ' + dogs[i].color + '</li>' + 
+		'<li><b>Height (cm):</b> ' + dogs[i].height + '</li>' +
+		'<li><b>Age(Years): </b>' + dogs[i].age + '</li>' + 
+		'<li><b>Job: </b>' + dogs[i].job + '</li>' +
 	'</ul>';
+	// End of list of details about dogs
+}
+
+function openModal() {
+	// Shows my custom modal of any particular dog that the user clicks on 
+	$('.my-dogs').on('click', function(){
+		// Shows the id of the dog that was clicked in the console, used for trouble shooting 
+		console.log(this.id);
+		// Reveals the modal that the information is going to be shown in 
+		$('.my-modal').show();
+		for(i=0; i<dogs.length; i++) {
+			// This looks at the id defined and checksfor equivalence with the image id that was clicked. It will dispaly the information
+			if(this.id.trim() == dogs[i].id.trim()) {
+				// Prints the dog that was clicked into the modal with the correlating information
+				dogInModal();
+			}
+		}
+	});
+
+	// This allows the user to be able to close the modal by hitting the 'x' in the top right of the modal
+	$('.close-bar').on('click', function() {
+		// Used for trouble shooting to make sure that the button press was being recorded
+		console.log('Close Modal');
+		// Hides the modal on clicking the button
+		$('.my-modal').hide();
+	});
 }
 
 // --- Shows all dogs listed in array
@@ -159,6 +189,7 @@ function dogInModal() {
 // Displays all dogs at the start of the code
 for (i=0;i < dogs.length; i++) {
 		allDogs();
+		openModal();
 }
 
 
@@ -169,6 +200,7 @@ document.getElementById('allDogs').addEventListener('click', function(){
 	for (i=0;i < dogs.length; i++) {
 		allDogs();
 	}
+	openModal();
 });
 
 // --- Displays my personal dog
@@ -180,6 +212,7 @@ document.getElementById('jackRussell').addEventListener('click', function(){
 			allDogs();
 		}
 	}
+	openModal();
 });
 
 // --- Shows all large dogs
@@ -191,6 +224,7 @@ document.getElementById('largeDog').addEventListener('click', function(){
 			allDogs();
 		}
 	}
+	openModal();
 });
 
 // --- Button that shows all small dogs
@@ -201,6 +235,7 @@ document.getElementById('smallDog').addEventListener('click', function(){
 			allDogs();
 		}
 	}
+	openModal();
 });
 
 // --- Button to show all racing dogs
@@ -213,6 +248,7 @@ document.getElementById('racingDogs').addEventListener('click', function(){
 			allDogs();
 		}
 	}
+	openModal();
 });
 
 // --- Changing Dog's name
@@ -232,30 +268,10 @@ document.getElementById('changeName').addEventListener('click', function() {
    	}
    	// Clears the fields for user to edit more names
    	fieldReset();
+   	openModal();
 });
 
-// Shows my custom modal of any particular dog that the user clicks on 
-$('.my-dogs').on('click', function(){
-	// Shows the id of the dog that was clicked in the console, used for trouble shooting 
-	console.log(this.id);
-	// Reveals the modal that the information is going to be shown in 
-	$('.my-modal').show();
-	for(i=0; i<dogs.length; i++) {
-		// This looks at the id defined and checksfor equivalence with the image id that was clicked. It will dispaly the information
-		if(this.id.trim() == dogs[i].id.trim()) {
-			// Prints the dog that was clicked into the modal with the correlating information
-			dogInModal();
-		}
-	}
-});
 
-// This allows the user to be able to close the modal by hitting the 'x' in the top right of the modal
-$('.close-bar').on('click', function() {
-	// Used for trouble shooting to make sure that the button press was being recorded
-	console.log('Close Modal');
-	// Hides the modal on clicking the button
-	$('.my-modal').hide();
-});
 
 
 // Sorting dogs in alphabetical order
@@ -280,6 +296,7 @@ document.getElementById('descName').addEventListener('click', function() {
 	for(i=0; i<dogs.length; i++){
 		allDogs();
 	}
+	openModal();
 });
 // Sort alphabetical order a-z
 document.getElementById('ascName').addEventListener('click', function() {
@@ -297,6 +314,7 @@ document.getElementById('ascName').addEventListener('click', function() {
 	for(i=0; i<dogs.length; i++){
 		allDogs();
 	}
+	openModal();
 });
 // Sort by age ascending
 document.getElementById('ascAge').addEventListener('click', function() {
@@ -315,6 +333,7 @@ document.getElementById('ascAge').addEventListener('click', function() {
 	for(i=0; i<dogs.length; i++){
 		allDogs();
 	}
+	openModal();
 });
 // Sort age by descending
 document.getElementById('descAge').addEventListener('click', function() {
@@ -333,6 +352,7 @@ document.getElementById('descAge').addEventListener('click', function() {
 	for(i=0; i<dogs.length; i++){
 		allDogs();
 	}
+	openModal();
 });
 
 
