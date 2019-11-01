@@ -22,7 +22,7 @@ var dogs = [
 		breed : 'Australian Shepherd',
 		color : 'White and Black',
 		height : 60, //cm
-		age : 5,
+		age : 7,
 		photo1 : 'assets/australianShepherdDog.jpg',
 		photo2 : 'assets/australianShepherdDog2.jpg',
 		job : 'Rounding Dog'
@@ -55,7 +55,7 @@ var dogs = [
 		breed : 'Whippet',
 		color : 'Brown and White',
 		height : 45, //cm
-		age : 3,
+		age : 8,
 		photo1: 'assets/whippet.jpg',
 		photo2: 'assets/whippet2.jpg',
 		job : 'Racing'
@@ -67,7 +67,7 @@ var dogs = [
 		breed : 'Pug',
 		color : 'Black',
 		height : 35, //cm
-		age : 5,
+		age : 9,
 		photo1 : 'assets/pug.jpg',
 		photo2 : 'assets/pug2.jpg',
 		job : 'Dying slowly and painfully because \'they look cute\''
@@ -256,6 +256,84 @@ $('.close-bar').on('click', function() {
 	console.log('Close Modal');
 	// Hides the modal on clicking the button
 	$('.my-modal').hide();
+});
+
+
+// Sorting dogs in alphabetical order
+document.getElementById('descName').addEventListener('click', function() {
+	clear();
+	// calling a function called compare to define the object property 
+	dogs.sort(compare); 
+	/* 
+		* The 'a' paremeter is used to represent the first
+		* The 'b' paremeter is used to represent the next object in the array
+	*/
+	function compare(a,b){
+		if(a.name < b.name) {
+			// Returns true for the name coming before the remaining names
+			return 1;
+		} else if(a.name > b.name) {
+			// Returns false
+			return -1;
+		}
+	} // end of the function
+
+	for(i=0; i<dogs.length; i++){
+		allDogs();
+	}
+});
+// Sort alphabetical order a-z
+document.getElementById('ascName').addEventListener('click', function() {
+	clear();
+
+	dogs.sort(compareReverse);
+
+	function compareReverse(b,a){
+		if (a.name < b.name) {
+			return 1;
+		} else if (a.name > b.name) {
+			return -1;
+		}
+	}
+	for(i=0; i<dogs.length; i++){
+		allDogs();
+	}
+});
+// Sort by age ascending
+document.getElementById('ascAge').addEventListener('click', function() {
+	clear();
+
+	dogs.sort(compareAgeAsc);
+
+	function compareAgeAsc(b,a) {
+		if(a.age < b.age) {
+			return 1;
+		} else if(a.age > b.age) {
+			return -1;
+		}
+	}
+
+	for(i=0; i<dogs.length; i++){
+		allDogs();
+	}
+});
+// Sort age by descending
+document.getElementById('descAge').addEventListener('click', function() {
+	clear();
+
+	dogs.sort(compareAgeDesc);
+
+	function compareAgeDesc(a,b) {
+		if(a.age < b.age) {
+			return 1;
+		} else if(a.age > b.age) {
+			return -1;
+		}
+	}
+
+	for(i=0; i<dogs.length; i++){
+		allDogs();
+	}
 });
 
 
