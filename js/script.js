@@ -5,16 +5,15 @@ var dogs = [
 	// First object of the array is contained within the square brackets and contained within a curly bracket
 	{
 		// variables inside an object are seperated with a comma
-		name : 'Celia',
-		id : 'd101',
-		breed : 'Jack Russell Terrior',
-		color : 'white and brown',
+		name : 'Celia', // name of the dog
+		id : 'd101', // id of the dog
+		breed : 'Jack Russell Terrior', // breed of the dog
+		color : 'white and brown', // primary colors of the dog 
 		height : 20, // how tall in cm
 		age : 16, // years old
-		photo1 : 'assets/jackRussell.jpg',
-		photo2 : 'assets/jackRussell2.jpg',
-		photo3 : 'assets/jackRussell3.jpg',
-		job : 'Ratter'
+		photo1 : 'assets/jackRussell.jpg', // first photo
+		photo2 : 'assets/jackRussell2.jpg', // second photo of the dog 
+		job : 'Ratter' // what the dog was bread to do
 	},	// a comma goes at the end of the curly brackets to seperate each object
 	{
 		name : 'Jim',
